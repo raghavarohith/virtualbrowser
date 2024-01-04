@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Git-Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/cloudtarun97/Vitual-Browser.git'
+                git branch: 'main', url: 'https://github.com/cloudrohith98/Vitual-Browser.git'
             }
         }
         
@@ -36,7 +36,7 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred') {
                         dir('/home/ubuntu/.jenkins/workspace/virtual-browser/.docker/firefox') {
-                            sh "docker build -t cloudtarun97/vb:latest ."
+                            sh "docker build -t cloudrohith98/vb:latest ."
                         }
                     }
                 }
@@ -46,7 +46,7 @@ pipeline {
         stage('Trivy Docker scan') {
             steps {
                 script {
-                    sh "trivy image cloudtarun97/vb:latest > trivy.txt"
+                    sh "trivy image cloudrohith98/vb:latest > trivy.txt"
                 }
             }
         }
@@ -55,7 +55,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                        sh "docker push cloudtarun97/vb:latest"
+                        sh "docker push cloudrohith98/vb:latest"
                     }
                 }
             }
